@@ -25,6 +25,7 @@
                 <th >Address City </th>
                 <th >Address State</th>
                 <th >Address ZipCode</th>
+                <th >Phone Number</th>
             </tr>
                  </thead>
 
@@ -40,6 +41,7 @@
                 <td th:text="${stu.address.city}"></td>
                 <td th:text="${stu.address.state}"></td>
                 <td th:text="${stu.address.zipCode}"></td>
+                        <td th:text="${stu.phone}"></td>
 
                 <td><a th:href="@{'/edit/' +  ${stu.id}}">edit</a></td>
                 <td>
@@ -49,11 +51,6 @@
     </div>
 
 </div>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-
 
 </body>
 </html>

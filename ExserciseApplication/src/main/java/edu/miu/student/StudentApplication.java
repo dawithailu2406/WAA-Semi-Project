@@ -19,7 +19,7 @@ public class StudentApplication {
 //    static class MyConfig extends WebMvcConfigurerAdapter {
 //        @Override
 //        public void addFormatters(FormatterRegistry registry) {
-//            registry.addFormatter(new TradeAmountFormatter());
+//            registry.addFormatter(new PhoneFormatter());
 //        }
 //    }
         @Configuration

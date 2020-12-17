@@ -11,12 +11,12 @@ import javax.validation.constraints.Size;
 @Setter
 @Getter
 @ToString
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Entity
 public class Phone {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotBlank(message = "it should nnot be blanck")
@@ -26,4 +26,11 @@ public class Phone {
     @NotBlank(message = "it should nnot be blanck")
     private String subFix;
 
+    public Phone(@NotBlank(message = "it should nnot be blanck") String prexis,
+                 @NotBlank(message = "it should nnot be blanck") String middle,
+                 @NotBlank(message = "it should nnot be blanck") String subFix) {
+        this.prexis = prexis;
+        this.middle = middle;
+        this.subFix = subFix;
+    }
 }

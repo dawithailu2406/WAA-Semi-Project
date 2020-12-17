@@ -29,8 +29,6 @@ $(document).ready(function() {
 		$.ajax({
 			type: "POST",
 			url:"http://localhost:9090/student/addStudentForm",
-
-				// "http://localhost:8080/student/addStudentForm",
 			data: studentJSON,
 			contentType: "application/json",
 			dataType: "json",
@@ -41,7 +39,6 @@ $(document).ready(function() {
 
 			},
 			error: function (XMLHttpRequest, textStatus, errorThrown) {
-				console.log('error');
 				let errorObj = XMLHttpRequest.responseJSON;
 				$("#solution").empty();
 				if (errorObj.errorType === 'ValidationError') {

@@ -33,6 +33,10 @@
     <p>Zip Code: <input th:field="*{address.zipCode}" >
         <span th:if="${#fields.hasErrors('address.zipCode')} " th:errors="*{address.zipCode}" th:errorclass="errors"></span>
     </p>
+    <p>Phine Number: <input th:field="*{phone}" >
+        <span th:if="${#fields.hasErrors('phone')} " th:errors="*{phone}" th:errorclass="errors"></span>
+    </p>
+
     <input type="submit" value="Update">
     </p>
 </form>

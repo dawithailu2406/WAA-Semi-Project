@@ -11,12 +11,14 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import java.time.LocalDate;
-@Setter
+import java.util.List;
+
 @Getter
-//@AllArgsConstructor
+@Setter
+@AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @ToString
+@Entity
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,8 +37,13 @@ public class Student {
     private String descripion;
 
    @Valid
+   @OneToMany(cascade = CascadeType.ALL)
+   @JoinTable
+    private List<Address>  address;
+
    @OneToOne(cascade = CascadeType.ALL)
-    private Address address;
+   @Valid
+   private Phone phone;
 
 
 

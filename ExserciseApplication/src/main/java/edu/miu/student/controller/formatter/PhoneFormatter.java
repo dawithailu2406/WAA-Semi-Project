@@ -19,6 +19,8 @@ public class PhoneFormatter implements Formatter<Phone> {
 
     @Override
     public String print(Phone phone, Locale locale) {
-        return null;
+
+
+        return phone.getPrexis()+"-"+ phone.getMiddle()+"-"+phone.getSubFix();
     }
 }

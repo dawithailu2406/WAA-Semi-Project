@@ -1,30 +1,33 @@
 package edu.miu.student.controller;
 
+import edu.miu.student.domain.Address;
 import edu.miu.student.domain.Exceptions.UserNotFoundException;
+import edu.miu.student.domain.Phone;
 import edu.miu.student.domain.Student;
+import edu.miu.student.service.AddressService;
+import edu.miu.student.service.PhoneService;
 import edu.miu.student.service.StudentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import javax.validation.Valid;
-import java.nio.file.attribute.UserPrincipalNotFoundException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
-
 public class StudentController {
     @Autowired
+    AddressService addressService;
+    @Autowired
     StudentService studentService;
+    @Autowired
+    PhoneService phoneService;
+
     @GetMapping("/")
     public String homePage(){
         return "home";
@@ -36,17 +39,18 @@ public class StudentController {
         rolesMap.put("ADM","ADM");
         rolesMap.put("User","User");
         return rolesMap;
-
     }
 
     @GetMapping("/addStudent")
-    public String getStudenForm(@ModelAttribute("newStudent") Student student){
+    public String getStudenForm(@ModelAttribute("newStudent") Student student ,Model model){
+        List<Address> adresses= addressService.findAllAddress();
+        model.addAttribute("listaddress",adresses);
         return "started";
     }
 
     @PostMapping ("/addStudents")
     public String addStudenForm(@Valid @ModelAttribute("newStudent") Student student, BindingResult result, RedirectAttributes redirectAttributes){
-        System.out.println("i was in add controller ");
+        System.out.println("Dawit  was in add controller ");
         if(result.hasErrors()){
             return "started";
         }
@@ -106,37 +110,18 @@ public class StudentController {
 
     }
 
-    //this is for the hint how the rest is used
-
-//    @PostMapping(value = "/api/addCategory", produces = "application/json")
-//    public Category saveCategory(@Valid @RequestBody Category category) {
-//        category.setDescription("This is default description...");
-//        categoryService.save(category);
-//        return category;
-//    }
 
 @PostMapping(value = "/student/addStudentForm", produces = "application/json")
 public @ResponseBody Student saveStudent(@Valid @RequestBody Student student) {
-    //student.setDescription("This is default description...");
     System.out.println("i am at the controller");
     System.out.println(student);
     studentService.save(student);
     return student;
 }
-
     @GetMapping("/getAjax")
     public String getAjaxStudentForm(@ModelAttribute("newStudent") Student student){
         return "ajaxsStarter";
-
     }
-
-
-//@PostMapping(value = "/api/addCategory", produces = "application/json")
-//public @ResponseBody Category saveCategory(@Valid @RequestBody Category category) {
-//    category.setDescription("This is default description...");
-//    categoryService.save(category);
-//    return category;
-//}
 
 
 }
